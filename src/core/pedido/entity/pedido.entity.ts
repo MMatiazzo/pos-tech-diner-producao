@@ -1,3 +1,4 @@
+import { Produto } from "src/core/produto/entity/produto.entity";
 import { NewPedidoDto } from "../dto/cria-pedido.dto";
 
 export enum CardinalDirections {
@@ -12,12 +13,12 @@ export enum CardinalDirections {
 export class Pedido {
   id?: string;
   status: string;
-  produtosIds: string[];
+  produtos: Produto[];
   clienteId?: string;
 
   private constructor(payload: NewPedidoDto) {
     this.status = payload.status;
-    this.produtosIds = payload.produtosIds;
+    this.produtos = payload.produtos;
     if (payload?.clienteId) this.clienteId = payload.clienteId;
   }
 

@@ -1,10 +1,11 @@
+import { Produto } from 'src/core/produto/entity/produto.entity';
 
 export type CriaPedidoDto = {
-  produtosIds: string[];
+  produtos: Produto[];
 };
 
 export type NewPedidoDto = {
   status: string;
-  produtosIds: string[];
+  produtos: Produto[];
   clienteId?: string;
-}
+};

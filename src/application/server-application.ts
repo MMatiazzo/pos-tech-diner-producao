@@ -7,7 +7,7 @@ export class ServerApplication {
 	public async run(): Promise<void> {
 		const app: NestExpressApplication = await NestFactory.create<NestExpressApplication>(RootModule);
 		app.useGlobalPipes(new ValidationPipe());
-		await app.listen(3333);
+		await app.listen(3335);
 	}
 
 	public static new(): ServerApplication {

@@ -14,8 +14,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Produto {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+type Produto {
+  id        String   
   nome      String
   categoria String
   preco     Int
@@ -28,5 +28,5 @@ model Pedido {
   status      String
   createdAt   DateTime @default(now())
   clienteId   String?  @db.ObjectId
-  produtosIds String[] @db.ObjectId
+  produtos    Produto[]
 }
