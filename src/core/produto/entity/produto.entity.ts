@@ -1,7 +1,7 @@
 import { ProdutoDto } from "../dto/cria-produto.dto";
 
 export class Produto {
-  id: string;
+  id?: string;
   nome: string;
   categoria: string;
   preco: number;

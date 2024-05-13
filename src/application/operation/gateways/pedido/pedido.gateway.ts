@@ -3,6 +3,7 @@ import { Pedido } from "src/core/pedido/entity/pedido.entity";
 import { IPedidoRepository } from "src/infrastructure/persistence/repositories/pedido/Ipedido.repository";
 import { IPedidoGateway } from "./Ipedido.gateway";
 import { ListarPedidoDto } from "src/core/pedido/dto/listar-pedido.dto";
+import { CadastrarPedidoDto } from "src/core/pedido/dto/cria-pedido.dto";
 
 export class PedidoGateway implements IPedidoGateway {
   constructor(
@@ -28,7 +29,11 @@ export class PedidoGateway implements IPedidoGateway {
   }
 
   async editarStatusPedido(id: string, status: string): Promise<Pedido> {
-    const teste = await this.pedidoRepository.editar(id, 'status', status);
-    return teste;
+    const pedidoModificado = await this.pedidoRepository.editar(id, 'status', status);
+    return pedidoModificado;
+  }
+
+  async cadastrarPedido(pedido: CadastrarPedidoDto): Promise<any> {
+    return await this.pedidoRepository.cadastrar(pedido);
   }
 }

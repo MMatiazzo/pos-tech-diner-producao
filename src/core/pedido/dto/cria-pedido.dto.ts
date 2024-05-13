@@ -1,11 +1,15 @@
-import { Produto } from 'src/core/produto/entity/produto.entity';
 
-export type CriaPedidoDto = {
-  produtos: Produto[];
+export type Produtos = {
+  _id: string;
+  nome: string;
+  categoria: string;
+  preco: number;
+  descricao: string;
+  imagens: string[];
 };
 
-export type NewPedidoDto = {
+export type CadastrarPedidoDto = {
   status: string;
-  produtos: Produto[];
+  produtos: Produtos[];
   clienteId?: string;
 };

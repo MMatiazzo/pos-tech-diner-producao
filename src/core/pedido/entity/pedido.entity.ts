@@ -1,5 +1,5 @@
 import { Produto } from "src/core/produto/entity/produto.entity";
-import { NewPedidoDto } from "../dto/cria-pedido.dto";
+import { CadastrarPedidoDto } from "../dto/cria-pedido.dto";
 
 export enum CardinalDirections {
   AGUARDANDO_PAGAMENTO = 'Aguardando_Pagamento',
@@ -16,13 +16,13 @@ export class Pedido {
   produtos: Produto[];
   clienteId?: string;
 
-  private constructor(payload: NewPedidoDto) {
+  private constructor(payload: CadastrarPedidoDto) {
     this.status = payload.status;
     this.produtos = payload.produtos;
     if (payload?.clienteId) this.clienteId = payload.clienteId;
   }
 
-  public static new(payload: NewPedidoDto) {
+  public static new(payload: CadastrarPedidoDto) {
     const pedido = new Pedido(payload);
     return pedido;
   }
