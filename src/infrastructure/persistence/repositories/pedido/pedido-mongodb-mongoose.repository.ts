@@ -13,7 +13,10 @@ export class PedidoMongodbMongooseRepository implements IPedidoRepository {
   ) { }
 
   async cadastrar(pedido: Pedido): Promise<any> {
-    return this.producaoModel.create(pedido);
+    const newPedidoData = { ...pedido, _id: pedido.id };
+    const newPedido = await this.producaoModel.create(newPedidoData);
+    return newPedido;
+
   }
 
   async listar(matchArray: any[]): Promise<any> {

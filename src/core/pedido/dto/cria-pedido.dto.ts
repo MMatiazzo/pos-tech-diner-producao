@@ -9,6 +9,7 @@ export type Produtos = {
 };
 
 export type CadastrarPedidoDto = {
+  id: string;
   status: string;
   produtos: Produtos[];
   clienteId?: string;
