@@ -17,12 +17,15 @@ export class SQSQueue implements IQueueGateway {
 
   async enviarMensagem(queueUrl: string, messageBody: any): Promise<void> {
     try {
+      console.log('entrei na fila sqs');
       const client = SQSQueue.getClient();
 
       const command = new SendMessageCommand({
         MessageBody: JSON.stringify(messageBody),
         QueueUrl: queueUrl,
       });
+
+      console.log('command criado');
 
       const response = await client.send(command);
       console.info(`response => ${response}`);

@@ -43,9 +43,11 @@ export class PedidoMongodbMongooseRepository implements IPedidoRepository {
   }
 
   async editar(id: string, field: string, value: string): Promise<any> {
-    const pedido = await this.producaoModel.findByIdAndUpdate({ _id: id }, {
-      [field]: value,
-    });
+    const pedido = await this.producaoModel.findByIdAndUpdate(
+      { _id: id },
+      { [field]: value },
+      { new: true }
+    );
 
     return pedido;
   }

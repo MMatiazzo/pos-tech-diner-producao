@@ -1,5 +1,5 @@
-import { ListarPedidoDto } from "src/core/pedido/dto/listar-pedido.dto";
-import { Pedido } from "src/core/pedido/entity/pedido.entity";
+import { ListarPedidoDto } from "../../../../core/pedido/dto/listar-pedido.dto";
+import { Pedido } from "../../../../core/pedido/entity/pedido.entity";
 
 export interface IPedidoGateway {
   listarPedido(pedidosIds: ListarPedidoDto): Promise<Pedido[]>;

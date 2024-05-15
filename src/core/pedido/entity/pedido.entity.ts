@@ -1,4 +1,4 @@
-import { Produto } from "src/core/produto/entity/produto.entity";
+import { Produto } from "../../../core/produto/entity/produto.entity";
 import { CadastrarPedidoDto } from "../dto/cria-pedido.dto";
 
 export enum CardinalDirections {

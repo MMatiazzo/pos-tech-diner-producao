@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { IPedidoGateway } from "src/application/operation/gateways/pedido/Ipedido.gateway";
-import { IQueueGateway } from "src/application/operation/gateways/queue/Iqueue.gateway";
+import { IPedidoGateway } from "../../../../application/operation/gateways/pedido/Ipedido.gateway";
+import { IQueueGateway } from "../../../../application/operation/gateways/queue/Iqueue.gateway";
 import { EditarPedidoDto } from "../../dto/editar-pedido.dto";
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { Inject } from '@nestjs/common';
-import { EditarPedidoDto } from 'src/core/pedido/dto/editar-pedido.dto';
-import { EditarPedidoStatusUseCase } from 'src/core/pedido/usecase/editar-pedido-status/editar-pedido-status.usecase';
+import { EditarPedidoDto } from '../../../../../core/pedido/dto/editar-pedido.dto';
+import { EditarPedidoStatusUseCase } from '../../../../../core/pedido/usecase/editar-pedido-status/editar-pedido-status.usecase';
 
 export class EditarPedidoStatusController {
   constructor(
