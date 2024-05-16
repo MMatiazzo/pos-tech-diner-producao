@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: postech
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pos-tech-diner-producao-secret
+  namespace: postech
+data:
+  DATABASE_URL: #{DATABASE_URL}#
+  AWS_ACCESS_KEY_ID_B64: #{AWS_ACCESS_KEY_ID_B64}#
+  AWS_SECRET_ACCESS_KEY_B64: #{AWS_SECRET_ACCESS_KEY_B64}#
+  SQS_EDITAR_STATUS_PEDIDO_QUEUE: #{SQS_EDITAR_STATUS_PEDIDO_QUEUE}#
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pos-tech-diner-producao-config-map
+  namespace: postech
+data:
+  AWS_REGION: "us-east-1"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pos-tech-diner-producao-deployment
+  namespace: postech
+  labels:
+    app: pos-tech-diner-producao-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pos-tech-diner-producao-deployment
+    spec:
+      containers:
+        - name: pos-tech-diner-producao-image
+          image: #{POS_TECH_DINER_PRODUCAO_IMAGE}#
+          ports:
+            - containerPort: 3335
+          envFrom:
+            - secretRef:
+                name: "pos-tech-diner-producao-secret"
+            - configMapRef:
+                name: "pos-tech-diner-producao-config-map"
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 500m
+  selector:
+    matchLabels:
+      app: pos-tech-diner-producao-deployment
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pos-tech-diner-producao-service
+  namespace: postech
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-name: test
+spec:
+  ports:
+    - port: 80
+      targetPort: 3335
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: pos-tech-diner-producao-deployment
