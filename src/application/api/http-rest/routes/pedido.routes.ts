@@ -9,6 +9,8 @@ import { CadastrarPedidoController } from '../../../operation/controllers/pedido
 import { EditarPedidoStatusController } from '../../../operation/controllers/pedido/editar-pedido-status/editar-pedido-status.controller';
 import { ListarPedidoController } from '../../../operation/controllers/pedido/listar-pedido/listar-pedido.controller';
 
+// deploy trigger
+
 @Controller('/producao')
 export class PedidoControllerRoute {
 
