@@ -1,6 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { IPedidoGateway } from "../../../../application/operation/gateways/pedido/Ipedido.gateway";
 import { CadastrarPedidoDto } from "../../dto/cria-pedido.dto";
+import { Pedido } from "../../entity/pedido.entity";
 
 @Injectable()
 export class CadastrarPedidoStatusUseCase {
@@ -9,7 +10,7 @@ export class CadastrarPedidoStatusUseCase {
     private pedidoGateway: IPedidoGateway
   ) { }
 
-  async execute(payload: CadastrarPedidoDto): Promise<void> {
-    await this.pedidoGateway.cadastrarPedido(payload);
+  async execute(payload: CadastrarPedidoDto): Promise<Pedido> {
+    return await this.pedidoGateway.cadastrarPedido(payload);
   }
 }
