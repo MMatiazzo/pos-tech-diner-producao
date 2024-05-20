@@ -9,6 +9,8 @@ Substituir a váriavel DATABASE_URL com a connection string mongodb
 <br>
 Executar o comando `npm run start:dev`
 
+##### A collection com os requests está no arquivo `micro-services.postman_collection.json` na pasta `PRODUCAO`
+
 ## End-point: listar
 #### End-point para listar os pedidos cadastrados no ms de produção
 ### Method: GET
