@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Provider } from '@nestjs/common/interfaces/modules/provider.interface';
 import { MongooseModule, getModelToken } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Connection, Model } from 'mongoose';
 import { EditarPedidoStatusUseCase } from '../../core/pedido/usecase/editar-pedido-status/editar-pedido-status.usecase';
 import { ListarPedidoUseCase } from '../../core/pedido/usecase/listar-pedido/listar-pedido.usecase';
 import { ProducaoDocument, ProducaoSchema } from '../../infrastructure/persistence/mongoose/schemas/producao/producao.schema';
@@ -46,9 +46,12 @@ const useCaseProviders: Provider[] = [
   },
   {
     provide: EditarPedidoStatusUseCase,
-    useFactory: (pedidoGateway: IPedidoGateway, queueGateway: IQueueGateway) =>
-      new EditarPedidoStatusUseCase(pedidoGateway, queueGateway),
-    inject: [IPedidoGateway, IQueueGateway],
+    useFactory: (
+      pedidoGateway: IPedidoGateway,
+      queueGateway: IQueueGateway,
+      connection: Connection
+    ) => new EditarPedidoStatusUseCase(pedidoGateway, queueGateway, connection),
+    inject: [IPedidoGateway, IQueueGateway, 'DatabaseConnection'],
   },
   {
     provide: CadastrarPedidoStatusUseCase,
