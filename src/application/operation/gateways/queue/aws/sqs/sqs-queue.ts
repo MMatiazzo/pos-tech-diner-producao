@@ -1,5 +1,6 @@
 import { DeleteMessageCommand, ReceiveMessageCommand, SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
 import { IQueueGateway } from "../../Iqueue.gateway";
+import { BadRequestException } from "@nestjs/common";
 
 export class SQSQueue implements IQueueGateway {
   private static getClient() {
@@ -31,6 +32,7 @@ export class SQSQueue implements IQueueGateway {
       console.info(`response => ${response}`);
     } catch (err) {
       console.error(`error on sqs-queue => ${err}`);
+      throw new BadRequestException(err);
     }
   }
 

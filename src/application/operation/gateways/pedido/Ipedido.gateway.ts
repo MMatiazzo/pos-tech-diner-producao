@@ -3,7 +3,7 @@ import { Pedido } from "../../../../core/pedido/entity/pedido.entity";
 
 export interface IPedidoGateway {
   listarPedido(pedidosIds: ListarPedidoDto): Promise<Pedido[]>;
-  editarStatusPedido(id: string, status: string): Promise<Pedido>;
+  editarStatusPedido(id: string, status: string, session: any): Promise<Pedido>;
   cadastrarPedido(pedido: Pedido): Promise<Pedido>;
 }
 
