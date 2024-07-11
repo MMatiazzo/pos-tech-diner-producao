@@ -42,10 +42,10 @@ describe('PedidoGateway', () => {
       const status = 'Finalizado';
 
       // Act
-      await gateway.editarStatusPedido(id, status);
+      await gateway.editarStatusPedido(id, status, 'session' as any);
 
       // Assert
-      expect(repository.editar).toHaveBeenCalledWith(id, 'status', status);
+      expect(repository.editar).toHaveBeenCalledWith(id, 'status', status, 'session');
     });
   });
 

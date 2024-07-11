@@ -1,6 +1,7 @@
 import { EditarPedidoDto } from '../../../../../core/pedido/dto/editar-pedido.dto';
 import { EditarPedidoStatusController } from './editar-pedido-status.controller';
 import { EditarPedidoStatusUseCase } from '../../../../../core/pedido/usecase/editar-pedido-status/editar-pedido-status.usecase';
+import { ClientSession } from 'mongoose';
 
 // Mock implementations of dependencies
 const mockPedidoGateway = {
@@ -17,6 +18,17 @@ const mockQueueGateway = {
   enviarMensagem: jest.fn()
 };
 
+let session = {
+  startTransaction: jest.fn(),
+  commitTransaction: jest.fn(),
+  abortTransaction: jest.fn(),
+  endSession: jest.fn(),
+} as unknown as ClientSession;
+
+const mockConnection = {
+  startSession: jest.fn().mockResolvedValue(session),
+};
+
 describe('EditarPedidoStatusController Test Suite', () => {
   let controller: EditarPedidoStatusController;
   let editarPedidoStatusUseCase: EditarPedidoStatusUseCase;
@@ -25,7 +37,8 @@ describe('EditarPedidoStatusController Test Suite', () => {
     // Use the mocked implementations instead of the real ones
     editarPedidoStatusUseCase = new EditarPedidoStatusUseCase(
       mockPedidoGateway as any,
-      mockQueueGateway as any
+      mockQueueGateway as any,
+      mockConnection as any
     );
     controller = new EditarPedidoStatusController(editarPedidoStatusUseCase);
   });
