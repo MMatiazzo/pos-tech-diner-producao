@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "f17b2852-3a21-42a3-bf4c-f58ec7538717",
+		"name": "PRODUCAO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13378210",
+		"_collection_link": "https://warped-escape-624714.postman.co/workspace/post-tech~2931a1e9-f92e-468c-98e8-1b5d76e5d02d/collection/13378210-f17b2852-3a21-42a3-bf4c-f58ec7538717?action=share&source=collection_link&creator=13378210"
+	},
+	"item": [
+		{
+			"name": "listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3335/producao/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3335",
+					"path": [
+						"producao",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar-pedido-producao",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"663f8cee5f8395e090f3d4da\",\r\n    \"status\": \"Recebido\",\r\n    \"clienteId\": \"usuarioteste4@email.com.br\",\r\n    \"produtos\": [\r\n        {\r\n            \"_id\": \"663f7f03e8f9dac785e80158\",\r\n            \"nome\": \"Whooper\",\r\n            \"categoria\": \"Lanche Muito bom\",\r\n            \"preco\": 10,\r\n            \"descricao\": \"Lanche para a maioria\",\r\n            \"imagens\": [],\r\n            \"createdAt\": \"2024-05-11T14:21:55.701Z\",\r\n            \"updatedAt\": \"2024-05-11T14:21:55.701Z\",\r\n            \"__v\": 0\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3335/producao/cadastrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3335",
+					"path": [
+						"producao",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar-status-pedido-producao",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"663f8cee5f8395e090f3d4da\",\r\n    \"status\": \"Teste2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3335/producao/editar-status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3335",
+					"path": [
+						"producao",
+						"editar-status"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

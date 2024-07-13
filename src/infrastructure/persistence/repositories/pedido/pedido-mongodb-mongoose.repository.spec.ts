@@ -67,12 +67,12 @@ describe('PedidoMongodbMongooseRepository Test Suite', () => {
 
     const findByIdAndUpdateSpy = jest.spyOn(model, 'findByIdAndUpdate').mockResolvedValueOnce(null);
 
-    await repository.editar(id, field, value);
+    await repository.editar(id, field, value, 'session' as any);
 
     expect(findByIdAndUpdateSpy).toHaveBeenCalledWith(
       { _id: id },
       { [field]: value },
-      { new: true }
+      { new: true, 'session': 'session' }
     );
   });
 
