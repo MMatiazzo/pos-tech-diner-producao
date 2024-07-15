@@ -118,7 +118,12 @@ git clone https://github.com/MMatiazzo/pos-tech-diner-producao
 cd pos-tech-diner-producao
 ```
 
-### 2. Execute o docker-compose
+### 2. No arquivo docker-compose.yaml
+```bash
+preencher as variáveis de ambiente. Obs: A variável DATABASE_URL deve ser uma connection string mongodb com replicaset.
+```
+
+### 3. Execute o docker-compose
 ```bash
 docker-compose up --build
 ```
